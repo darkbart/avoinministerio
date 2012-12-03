@@ -70,6 +70,10 @@ class Idea < ActiveRecord::Base
     25
   end
 
+  def self.ongoing
+    where("ideas.collecting_started IS NOT NULL AND ideas.collecting_ended IS NULL")
+  end
+
   def to_param
     "#{self.id}-#{self.slug}"
   end
