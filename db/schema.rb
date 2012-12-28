@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210150646) do
+ActiveRecord::Schema.define(:version => 20121228132854) do
 
   create_table "administrators", :force => true do |t|
     t.string   "email"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
   end
 
   add_index "answers", ["api_id"], :name => "uq_answers_api_id", :unique => true
+  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -73,6 +74,8 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.string   "slug"
   end
 
+  add_index "articles", ["citizen_id"], :name => "index_articles_on_citizen_id"
+  add_index "articles", ["idea_id"], :name => "index_articles_on_idea_id"
   add_index "articles", ["slug"], :name => "index_articles_on_slug", :unique => true
 
   create_table "authentications", :force => true do |t|
@@ -148,6 +151,9 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.datetime "updated_at"
   end
 
+  add_index "dependencies", ["question_group_id"], :name => "index_dependencies_on_question_group_id"
+  add_index "dependencies", ["question_id"], :name => "index_dependencies_on_question_id"
+
   create_table "dependency_conditions", :force => true do |t|
     t.integer  "dependency_id"
     t.string   "rule_key"
@@ -165,6 +171,10 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.datetime "updated_at"
   end
 
+  add_index "dependency_conditions", ["answer_id"], :name => "index_dependency_conditions_on_answer_id"
+  add_index "dependency_conditions", ["dependency_id"], :name => "index_dependency_conditions_on_dependency_id"
+  add_index "dependency_conditions", ["question_id"], :name => "index_dependency_conditions_on_question_id"
+
   create_table "expert_suggestions", :force => true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -178,6 +188,9 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "expert_suggestions", ["citizen_id"], :name => "index_expert_suggestions_on_citizen_id"
+  add_index "expert_suggestions", ["idea_id"], :name => "index_expert_suggestions_on_idea_id"
 
   create_table "ideas", :force => true do |t|
     t.string   "title"
@@ -219,6 +232,8 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.datetime "updated_at"
     t.string   "unique_identifier"
   end
+
+  add_index "money_transactions", ["citizen_id"], :name => "index_money_transactions_on_citizen_id"
 
   create_table "profiles", :force => true do |t|
     t.integer  "citizen_id"
@@ -282,6 +297,8 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
   end
 
   add_index "questions", ["api_id"], :name => "uq_questions_api_id", :unique => true
+  add_index "questions", ["question_group_id"], :name => "index_questions_on_question_group_id"
+  add_index "questions", ["survey_section_id"], :name => "index_questions_on_survey_section_id"
 
   create_table "response_sets", :force => true do |t|
     t.integer  "user_id"
@@ -297,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
 
   add_index "response_sets", ["access_code"], :name => "response_sets_ac_idx", :unique => true
   add_index "response_sets", ["api_id"], :name => "uq_response_sets_api_id", :unique => true
+  add_index "response_sets", ["survey_id"], :name => "index_response_sets_on_survey_id"
 
   create_table "responses", :force => true do |t|
     t.integer  "response_set_id"
@@ -316,7 +334,10 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.string   "api_id"
   end
 
+  add_index "responses", ["answer_id"], :name => "index_responses_on_answer_id"
   add_index "responses", ["api_id"], :name => "uq_responses_api_id", :unique => true
+  add_index "responses", ["question_id"], :name => "index_responses_on_question_id"
+  add_index "responses", ["response_set_id"], :name => "index_responses_on_response_set_id"
   add_index "responses", ["survey_section_id"], :name => "index_responses_on_survey_section_id"
 
   create_table "sessions", :force => true do |t|
@@ -353,6 +374,9 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.string   "service"
   end
 
+  add_index "signatures", ["citizen_id"], :name => "index_signatures_on_citizen_id"
+  add_index "signatures", ["idea_id"], :name => "index_signatures_on_idea_id"
+
   create_table "survey_sections", :force => true do |t|
     t.integer  "survey_id"
     t.string   "title"
@@ -366,6 +390,8 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "survey_sections", ["survey_id"], :name => "index_survey_sections_on_survey_id"
 
   create_table "surveys", :force => true do |t|
     t.string   "title"
@@ -407,6 +433,10 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.datetime "updated_at"
   end
 
+  add_index "validation_conditions", ["answer_id"], :name => "index_validation_conditions_on_answer_id"
+  add_index "validation_conditions", ["question_id"], :name => "index_validation_conditions_on_question_id"
+  add_index "validation_conditions", ["validation_id"], :name => "index_validation_conditions_on_validation_id"
+
   create_table "validations", :force => true do |t|
     t.integer  "answer_id"
     t.string   "rule"
@@ -414,6 +444,8 @@ ActiveRecord::Schema.define(:version => 20121210150646) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "validations", ["answer_id"], :name => "index_validations_on_answer_id"
 
   create_table "votes", :force => true do |t|
     t.integer  "option"
