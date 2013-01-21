@@ -1,0 +1,25 @@
+.headline {
+  background-color: $violet;
+  margin-top: 0.2em;
+  height: 180px;
+
+  hgroup, .actions {
+    margin: 60px 0 0;
+  }
+  
+  hgroup {
+    h1, h2 {
+      color: #fff;
+      margin: 0 0 0 20px;
+      padding: 0;
+    }
+  }
+
+  .actions > a.button {
+    float: right;
+    width: 120px;
+    text-align: center;
+    margin: 0 20px 20px 0;
+    display: block;
+  }
+}

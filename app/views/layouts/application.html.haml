@@ -8,7 +8,7 @@
   - if @idea
     = yield :facebook_metadata_for_idea
   - else
-    = render 'shared/facebook_meta_tags'
+    = render 'facebook_meta_tags'
   - if content_for? :head
     = yield :head
   - else
@@ -29,24 +29,25 @@
     #{KM.js}
 
 %body
-  %header.container_24.top_row_container
-    .container_24.top_row
-  %header.container_24
-    = link_to image_tag("logo.png"), root_path, id: "logo", class: "grid_12"
-    = render partial: 'shared/login_actions'
-    = render partial: 'shared/facebook_js'
-    .idea_actions.bottom_row
-      .grid_6
-        &nbsp;
-      .grid_3
-        = link_to "Listaa kaikki", ideas_path
-      .grid_3
-        = link_to "Anna idea", new_idea_path
-      .grid_2
-        &nbsp;
-      .grid_7
-        = survey_button
-  .container.container_24
+  %header.container
+    .row.top_row
+      .span6
+        = link_to image_tag("logo.png"), root_path, id: "logo"
+      .span6
+        = render partial: 'login_actions'
+        = render partial: 'facebook_js'
+        .idea_actions.bottom_row
+          .grid_6
+          &nbsp;
+          .grid_3
+          = link_to "Listaa kaikki", ideas_path
+          .grid_3
+            = link_to "Anna idea", new_idea_path
+            .grid_2
+            &nbsp;
+            .grid_7
+            = survey_button
+  #content.container
     %section
       = yield
   #footer_container
@@ -77,5 +78,5 @@
 
   %script{:type => "text/javascript", :src => "//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f201d4978456053"}
 
-  = render :partial => 'shared/ga' if ENV["GA_TRACKING_ID"]
-  = render :partial => 'shared/metrify' if Rails.env == 'production'
+  = render :partial => 'ga' if ENV["GA_TRACKING_ID"]
+  = render :partial => 'metrify' if Rails.env == 'production'
