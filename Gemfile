@@ -4,12 +4,9 @@ gem "rails", "3.2.12"
 
 # Gems used only for assets and not required
 # in production environments by default.
+
 group :assets do
   gem "coffee-rails", "~> 3.2.2"
-  gem 'libv8'
-  gem 'therubyracer', platform: :ruby
-  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem "sass-rails",   "= 3.2.5"
   gem "uglifier",     ">= 1.3.0"
 end
@@ -36,6 +33,11 @@ gem "hominid"
 gem "tanker", :git => "git://github.com/kidpollo/tanker.git"
 gem "unicorn"
 gem "surveyor", "~> 1.1.0"
+
+gem 'libv8'
+gem 'therubyracer', platform: :ruby
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 gem "rspec-rails", :groups => [ :development, :test ]
 
