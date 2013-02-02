@@ -1,82 +1,49 @@
 !!! 5
-/[if lt IE 9] <html class="ie">
-/[if gte IE 9] <html>
-%head
-  %meta{ :charset => "utf-8" }/
-  %meta{ :content => "width=device-width, initial-scale=1", :name => "viewport" }/
-  %link{ href: asset_path('favicon.ico'), rel: 'shortcut icon', type: 'image/x-icon' }
-  - if @idea
-    = yield :facebook_metadata_for_idea
-  - else
-    = render 'facebook_meta_tags'
-  - if content_for? :head
-    = yield :head
-  - else
-    %title Avoin Ministeriö
-
-  = stylesheet_link_tag "application.css"
-  = javascript_include_tag "application"
-  /= javascript_include_tag "vote-flow/impact-code" if params[:controller] == "ideas" and params[:action] == "vote_flow"
-  :javascript
-    if (window.location.hash == '#_=_') {
-      if (console && 'function' == typeof console.warn) console.warn("Remove this ugly Facebook auth hax when https://developers.facebook.com/bugs/196125357123225 is fixed.");
-      window.location.href = window.location.toString().split("#")[0];
-    }
-  /[if lt IE 9]
-    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-
-  :javascript
-    #{KM.js}
-
-%body
-  %header.container
-    .row.top_row
-      .span6
-        = link_to image_tag("logo.png"), root_path, id: "logo"
-      .span6
-        = render partial: 'login_actions'
-        = render partial: 'facebook_js'
-        .idea_actions.bottom_row
-          .grid_6
-          &nbsp;
-          .grid_3
-          = link_to "Listaa kaikki", ideas_path
-          .grid_3
-            = link_to "Anna idea", new_idea_path
-            .grid_2
-            &nbsp;
-            .grid_7
-            = survey_button
-  #content.container
-    %section
-      = yield
-  #footer_container
-    %footer.container_24
-      %a.grid_6{ href: "/artikkelit/miten-palvelu-toimii" } Miten palvelu toimii?
-      %a.grid_6{ href: "/artikkelit/asiantuntijoille-ja-tutkijoille" } Asiantuntijoille
-      %a.grid_6{ href: "/artikkelit/medialle" } Medialle
-
-      .grid_6
-        %div{:class => "addthis_toolbox addthis_default_style"}
-          %a{:class => "addthis_button_preferred_1"}
-          %a{:class => "addthis_button_preferred_2"}
-          %a{:class => "addthis_button_preferred_3"}
-          %a{:class => "addthis_button_preferred_4"}
-          %a{:class => "addthis_button_compact"}
-          %a{:class => "addthis_counter addthis_bubble_style"}
-
-      %br
-
-      %a.grid_6{ href: "/artikkelit/20-usein-kysyttyja-kysymyksia" } Usein kysytyt kysymykset
-      %a.grid_6{ href: "/artikkelit?article_type=blog" } Blogikirjoitukset
-
-      %br
-
-      %a.grid_6{ href: "/artikkelit/yhteystiedot" } Yhteystiedot
-      %a.grid_6{ href: "/artikkelit/kayttoehdot" } Käyttöehdot
-      %a.grid_6{ href: "/artikkelit/rekisteriseloste" } Rekisteriseloste
-
-  %script{:type => "text/javascript", :src => "//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f201d4978456053"}
-
-  = render :partial => 'ga' if ENV["GA_TRACKING_ID"]
-  = render :partial => 'metrify' if Rails.env == 'production'
+%html(lang="fn")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : ::I18n.t("Open Ministry")
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
+    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
+    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
+    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
+    %link(href="favicon.ico" rel="shortcut icon")
+  %body
+    .navbar.navbar-inverse.navbar-fluid-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand{href: root_path}
+            = ::I18n.t "Open Ministry"
+          .container.nav-collapse.pull-left
+            %ul.nav
+              %li= link_to t("about us"), root_path
+              %li= link_to t("tour guide"), root_path
+          .container.nav-collapse.pull-right
+            %ul.nav
+              %li= link_to t("register"), new_citizen_registration_path
+              %li= link_to t("login"), citizen_omniauth_authorize_path(:facebook)
+              %li= link_to t("Facebook login"), citizen_omniauth_authorize_path(:facebook)
+    .container
+      .row
+        .span12
+          = bootstrap_flash
+          = yield
+    
+      %footer
+        %p &copy; Company 2012
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
