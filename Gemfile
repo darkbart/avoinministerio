@@ -9,7 +9,7 @@ group :assets do
   gem 'libv8'
   gem 'therubyracer', platform: :ruby
   gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-  gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem "sass-rails",   "= 3.2.5"
   gem "uglifier",     ">= 1.3.0"
 end
