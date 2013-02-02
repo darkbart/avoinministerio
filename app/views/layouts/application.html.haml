@@ -16,6 +16,13 @@
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="favicon.ico" rel="shortcut icon")
+    :javascript
+      if (window.location.hash == '#_=_') {
+        if (console && 'function' == typeof console.warn) console.warn("Remove this ugly Facebook auth hax when https://developers.facebook.com/bugs/196125357123225 is fixed.");
+        window.location.href = window.location.toString().split("#")[0];
+      }
+    :javascript
+      #{KM.js}
   %body
     .navbar.navbar-inverse.navbar-fluid-top
       .navbar-inner
@@ -47,3 +54,7 @@
       Javascripts
       \==================================================
     / Placed at the end of the document so the pages load faster
+    %script{:type => "text/javascript", :src => "//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f201d4978456053"}
+
+    = render :partial => 'ga' if ENV["GA_TRACKING_ID"]
+    = render :partial => 'metrify' if Rails.env == 'production'
