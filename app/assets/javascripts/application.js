@@ -6,7 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require raphael-min
 //= require g.raphael-min
 //= require g.pie-min
-//= require_directory .
+//=# require_directory .
