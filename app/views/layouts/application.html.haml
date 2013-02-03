@@ -51,8 +51,32 @@
         .span12
           = bootstrap_flash
           = yield
-    %footer
-      %p &copy; Company 2012
+    %footer.container-fluid
+      .container
+        .row
+          %a.span3{ href: "/artikkelit/miten-palvelu-toimii" } Miten palvelu toimii?
+          %a.span3{ href: "/artikkelit/asiantuntijoille-ja-tutkijoille" } Asiantuntijoille
+          %a.span3{ href: "/artikkelit/medialle" } Medialle
+
+          .span3
+            %div{:class => "addthis_toolbox addthis_default_style"}
+              %a{:class => "addthis_button_preferred_1"}
+              %a{:class => "addthis_button_preferred_2"}
+              %a{:class => "addthis_button_preferred_3"}
+              %a{:class => "addthis_button_preferred_4"}
+              %a{:class => "addthis_button_compact"}
+              %a{:class => "addthis_counter addthis_bubble_style"}
+
+        .row
+          %a.span3{ href: "/artikkelit/20-usein-kysyttyja-kysymyksia" } Usein kysytyt kysymykset
+          %a.span3{ href: "/artikkelit?article_type=blog" } Blogikirjoitukset
+          .span6
+            == &nbsp;
+        .row
+          %a.span3{ href: "/artikkelit/yhteystiedot" } Yhteystiedot
+          %a.span3{ href: "/artikkelit/kayttoehdot" } Käyttöehdot
+          %a.span6{ href: "/artikkelit/rekisteriseloste" } Rekisteriseloste
+
     /
       Javascripts
       \==================================================
