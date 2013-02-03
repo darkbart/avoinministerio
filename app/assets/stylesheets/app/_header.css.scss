@@ -1,0 +1,14 @@
+input[type=submit], a.button {
+  float: right;
+  margin: 12px;
+  padding: 8px 22px;
+  
+  font-family: $sans_serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  background: $violet;
+  color: #ffffff;
+  border: 0px;
+  font-size: 11px;
+}

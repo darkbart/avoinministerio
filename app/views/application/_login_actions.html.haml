@@ -1,18 +1,12 @@
-.login_actions.top_row.row
-  - if citizen_signed_in?
-    .span3
-      = link_to "Profiili", profile_path
-      |
-      = link_to "Asetukset", edit_profile_path
-      |
-      = link_to "Kirjaudu ulos", destroy_citizen_session_path, method: :delete
-    .span1
-      %img.avatar{ src: current_citizen.image, width: 25, height: 25, alt: "avatar" }
+- if citizen_signed_in?
+  %li
+    %img{class: 'avatar', src: current_citizen.image, width: 25, height: 25, alt: "avatar" }
+    %span{class: 'citizen_name'}
       #{current_citizen.name}
-  - else
-    .span2
-      = link_to "Rekisteröidy", new_citizen_registration_path
-    .span2
-      = link_to "Kirjaudu", new_citizen_session_path
-  .span2.centered_text
-    = link_to "Kirjaudu Facebookilla", citizen_omniauth_authorize_path(:facebook), class: 'centered_text'
+  %li= link_to t('profile'), profile_path
+  %li= link_to t('edit profile'), edit_profile_path
+  %li= link_to t('logout'), destroy_citizen_session_path, method: :delete
+- else
+  %li= link_to t("register"), new_citizen_registration_path
+  %li= link_to t("login"), citizen_omniauth_authorize_path(:facebook)
+  %li= link_to t("Facebook login"), citizen_omniauth_authorize_path(:facebook)

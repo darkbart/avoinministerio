@@ -1,11 +1,10 @@
-@import 'tb/bootstrap.css';
-@import 'tb/bootstrap-responsive.css';
 @import 'defaults/colors';
 @import 'defaults/fonts';
-@import 'header';
+@import 'app/navbar';
+@import 'app/header';
 @import 'pages';
-@import 'footer';
+//@import 'footer';
 
-.centered_text {
-  text-align: center;
+#content {
+  background: #45aa32;
 }

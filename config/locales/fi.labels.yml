@@ -1,9 +1,14 @@
 fi:
-  "about us": "about us"
-  "Facebook login": "Facebook login"
-  "ideas list": "ideas list"
-  "login": "login"
-  "new idea": "new idea"
-  "Open Ministry": "Open Ministry"
-  "register": "register"
-  "tour guide": "tour guide"
+  'about us': 'about us'
+  'edit profile': 'edit profile'
+  'Facebook login': 'Facebook login'
+  'faq': 'faq'
+  'ideas list': 'ideas list'
+  'login': 'login'
+  'logout': 'logout'
+  'new idea': 'new idea'
+  'Open Ministry': 'Open Ministry'
+  'participate in a scientific study': 'participate in a scientific study'
+  'profile': 'profile'
+  'register': 'register'
+  'tour guide': 'tour guide'

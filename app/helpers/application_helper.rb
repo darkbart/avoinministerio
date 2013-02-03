@@ -2,6 +2,11 @@
 require 'digest/sha2'
 
 module ApplicationHelper
+
+  def ie8?
+    request.env['HTTP_USER_AGENT'].include? "Mozilla/4.0 (compatible; MSIE 8.0;"
+  end
+
   def markdown(text)
     renderer = Redcarpet::Render::HTML.new(filter_html: true, hard_wrap: true, with_toc_data: true)
     Redcarpet::Markdown.new(renderer, { autolink: true, tables: true }).render(text).html_safe
