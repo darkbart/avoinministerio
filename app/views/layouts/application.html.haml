@@ -35,21 +35,38 @@
             = ::I18n.t "Open Ministry"
           .container.nav-collapse.pull-left
             %ul.nav
-              %li= link_to t("about us"), root_path
-              %li= link_to t("tour guide"), root_path
+              %li= link_to t("ideas list"), root_path
+              %li= link_to t("new idea"), root_path
           .container.nav-collapse.pull-right
             %ul.nav
               %li= link_to t("register"), new_citizen_registration_path
               %li= link_to t("login"), citizen_omniauth_authorize_path(:facebook)
               %li= link_to t("Facebook login"), citizen_omniauth_authorize_path(:facebook)
-    .container
-      .row
-        .span12
-          = bootstrap_flash
-          = yield
-    
-      %footer
-        %p &copy; Company 2012
+    %header.container
+      .row.top_row
+        .span6
+          = link_to image_tag("logo.png"), root_path, id: "logo"
+        .span6
+          = render partial: 'login_actions'
+          = render partial: 'facebook_js'
+          .idea_actions.bottom_row
+            .grid_6
+            &nbsp;
+            .grid_3
+            = link_to "Listaa kaikki", ideas_path
+            .grid_3
+              = link_to "Anna idea", new_idea_path
+              .grid_2
+              &nbsp;
+              .grid_7
+              = survey_button
+    #content.container
+      %section.row
+        = bootstrap_flash
+        = request.env['HTTP_USER_AGENT']
+        = yield
+    %footer
+      %p &copy; Company 2012
     /
       Javascripts
       \==================================================
