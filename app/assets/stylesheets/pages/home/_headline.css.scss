@@ -1,0 +1,45 @@
+.headline {
+  background: $violet;
+  margin-top: 0px;
+  height: 180px;
+
+  hgroup, .actions {
+    margin: 60px 0 0;
+  }
+  
+  hgroup {
+    h1, h2 {
+      color: #fff;
+      margin: 0 0 0 20px;
+      padding: 0;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    h2 {
+      font-size: 40px;
+    }
+  }
+
+  .actions > a.button {
+    float: right;
+    width: 120px;
+    text-align: center;
+    margin: 0 20px 20px 0;
+    display: block;
+    background: #ffffff;
+    color: $violet;
+  }
+}
+.headline > hgroup > h1, .headline > hgroup > h2 {
+  font-family: $serif;
+}
+
+.headline > hgroup > h1 {
+  font-size: 20px;
+}
+
+.headline > hgroup > h2 {
+  font-size: 46px;
+  text-transform: uppercase;
+}
