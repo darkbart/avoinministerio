@@ -8,5 +8,5 @@
   %li= link_to t('logout'), destroy_citizen_session_path, method: :delete
 - else
   %li= link_to t("register"), new_citizen_registration_path
-  %li= link_to t("login"), citizen_omniauth_authorize_path(:facebook)
+  %li= link_to t("login"), new_citizen_session_path
   %li= link_to t("Facebook login"), citizen_omniauth_authorize_path(:facebook)
