@@ -47,9 +47,10 @@
     %header.container
       = survey_button
     #content.container
-      .row
-        .span12
-          = bootstrap_flash
+      - if flash.any?
+        .row
+          .span12
+            = bootstrap_flash
       = yield
     %footer.container-fluid
       .container

@@ -4,15 +4,20 @@
     locals: {title: "Toimenpide- ja Lakiehdotukset sekä Luonnokset", section: "proposal_and_draft",
          items: @proposals_and_drafts, items_counts: @proposal_and_drafts_counts, item_counter: 0 }
 - else # session[:ab_section_count] == 2
-  = render partial: 'ideas_row', 
-    locals: {title: t("@@@Toimenpide- ja Lakiehdotukset"), items: @proposals, items_counts: @proposals_counts, item_counter: 0, section: "proposal" }
+  .row
+    = render partial: 'ideas_header', locals: {title: t('@@@Toimenpide- ja Lakiehdotukse')}
+  = render partial: 'ideas_row',
+    locals: {items: @proposals, items_counts: @proposals_counts, item_counter: 0, section: "proposal" }
+  .row
+    = render partial: 'ideas_header', locals: {title: t("@@@Luonnokset")}
   = render partial: 'ideas_row', 
     locals: {title: t("Luonnokset"), items: @drafts, items_counts: @draft_counts, item_counter: 3,  section: "draft" }
-
-- if @newest_ideas
-  = render partial: 'ideas'
-- else
-  = render partial: 'random_ideas'
-
-= render partial: 'news'
-= render partial: 'newsletter'
+.row.home_bottom
+  .span8
+    - if @newest_ideas
+      = render partial: 'ideas'
+    - else
+      = render partial: 'random_ideas'
+  .span4
+    = render partial: 'news'
+    = render partial: 'newsletter'

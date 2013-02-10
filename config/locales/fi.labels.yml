@@ -13,5 +13,6 @@ fi:
   'register': 'register'
   'tour guide': 'tour guide'
 
-  "": "toimenpide - ja lakiehdotukset sekä luonnokset"
-  "": ""
+  '@@@Toimenpide- ja Lakiehdotukset sekä Luonnokset': 'toimenpide - ja lakiehdotukset sekä luonnokset'
+  '@@@Luonnokset': '@@@Luonnokset'
+  '@@@Esimerkkejä ideoista': '@@@Esimerkkejä ideoista'

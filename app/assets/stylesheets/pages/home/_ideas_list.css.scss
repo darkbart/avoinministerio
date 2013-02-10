@@ -1,13 +1,104 @@
-// Place all the styles related to the Ideas controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.idea {
+  font-family: $serif;
+  font-weight: normal;
+  text-transform: none;
 
-$turquoise: #29abe2;
-$violet: #473161;
-$violet-muted: #271141;
-$grey: #888888;
-$green: #8cc63f;
-$red: #a9003f;
+  h1 {
+    font-size: 32px;
+  }
+
+  .author > .name {
+    font-family: $sans_serif;
+    font-size: 16px;
+  }
+
+  .author > .date {
+    font-family: $sans_serif;
+    font-size: 13px;
+    padding-left: 10px;
+  }
+
+  .summary {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .body > p {
+    font-size: 16px;
+  }
+
+  .body > p:first-child:first-letter {
+    font-size: 3em;
+  }
+
+  .body > p:first-child:first-line {
+    line-height: 1em;
+  }
+
+  .info {
+    .type, .date {
+      font-family: $sans_serif;
+      text-transform: uppercase;
+    }
+
+    .type {
+      font-weight: bold;
+    }
+
+    h3, h2 {
+      font-family: $serif;
+      font-weight: normal;
+      text-transform: none;
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-family: $serif;
+      font-weight: normal;
+      text-transform: none;
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+  .statistics {
+    font-family: $sans_serif;
+    text-transform: uppercase;
+
+    .total, .for, .against {
+      font-weight: bold;
+    }
+  }
+
+  aside {
+    font-family: $sans_serif;
+  }
+}
 
 #new_idea .input label {
   display: block;
@@ -161,9 +252,6 @@ h1 {
   text-decoration: none;
 }
 
-
-
-
 .expert_opinions h2,
 .idea_comments h2 {
   padding-bottom: 6px;
@@ -267,15 +355,15 @@ ul.horizontal li {
 
 .help_cont {
   margin-top: 15px;
-  display: none;
+  display: none; 
 }
 
 #title_help, #summary_help, #body_help {
   padding-top: 60px;
   background-image:url("/assets/ohje_nuoli.png");
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
   position: absolute;
-  left: 640px;
+  left: 640px; 
 }
 
 .ideas .idea .info h2.notitle a {
@@ -287,7 +375,7 @@ ul.horizontal li {
 }
 
 .ideas .idea .content {
-  padding-top: 22px;
+  padding-top: 22px;  
 }
 
 .ideas .idea .content a {
@@ -413,3 +501,4 @@ ul.horizontal li {
 .share .addthis_32x32_style {
   height: 32px;
 }
+
