@@ -1,30 +1,18 @@
 .row
   = render 'ideas_header', title: t('@@@Esimerkkejä ideoista')
   - i = 0
-  - @ideas.each_slice(2) do |idea, idea2|
+  - @ideas.in_groups_of((@ideas.length % 2 == 0) ? @ideas.length / 2 : (@ideas.length / 2 + 1)).each do |ideas_column|
     .span4
-      .idea
-        .info.statistics
-          .infotext
-            %h3=link_to shorten(idea.title, 100, 20, '»'), idea_path(idea), id: "ab_ideas_#{i+=1}"
-            %p=link_to shorten(idea.summary, 100, 20, '»'), idea_path(idea), id: "ab_ideas_#{i}"
-          - for_, against, comments, total = @idea_counts[idea.id]
-          %span.total #{total} ääntä:&nbsp;
-          %span.for #{for_}
-          |
-          %span.against #{against}
-          %span.front-page-comment-count= link_to "#{comments}", idea_path(idea, anchor: 'comments')
-    .span4
-      .idea
-        .info.statistics
-          .infotext
-            %h3=link_to shorten(idea2.title, 100, 20, '»'), idea_path(idea2), id: "ab_ideas_#{i+=1}"
-            %p=link_to shorten(idea2.summary, 100, 20, '»'), idea_path(idea2), id: "ab_ideas_#{i}"
-          - for_, against, comments, total = @idea_counts[idea2.id]
-          %span.total #{total} ääntä:&nbsp;
-          %span.for #{for_}
-          |
-          %span.against #{against}
-          %span.front-page-comment-count= link_to "#{comments}", idea_path(idea2, anchor: 'comments')
-
+      - ideas_column.each do |idea|
+        .idea
+          .info.statistics
+            .infotext
+              %h3=link_to shorten(idea.title, 100, 20, '»'), idea_path(idea), id: "ab_ideas_#{i+=1}"
+              %p=link_to shorten(idea.summary, 100, 20, '»'), idea_path(idea), id: "ab_ideas_#{i}"
+            - for_, against, comments, total = @idea_counts[idea.id]
+            %span.total #{total} ääntä:&nbsp;
+            %span.for #{for_}
+            |
+            %span.against #{against}
+            %span.front-page-comment-count= link_to "#{comments}", idea_path(idea, anchor: 'comments')
   =link_to 'Listaa kaikki»', ideas_path, class: 'list_ideas'
