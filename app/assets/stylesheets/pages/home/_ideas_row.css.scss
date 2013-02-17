@@ -13,9 +13,21 @@
     min-height: 180px;
   }
   .bar {
-    bottom: 30px;
     padding: 5px 10px;
     max-width: 350px;
+    div {
+      min-width: 9%;
+      color: #ffffff;
+    }
+    .for {
+      float: left;
+      background: $green;
+    }
+    .against {
+      float: right;
+      background: $red;
+      text-align: right;
+    }
   }
 }
 .separator {
