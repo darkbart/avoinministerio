@@ -1,18 +1,25 @@
 .ideas_row {
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   position: relative;
   .span4 {
-    min-height: 200px;
-    background: seagreen;
+    .gap {
+      margin-top: 20px;
+    }
   }
   .title {
     font-size: 18px;
     padding: 0px 10px;
+    min-height: 180px;
   }
   .bar {
-    position: absolute;
-    bottom: 0px;
+    bottom: 30px;
     padding: 5px 10px;
     max-width: 350px;
   }
+}
+.separator {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom:  10px solid $violet;
 }
