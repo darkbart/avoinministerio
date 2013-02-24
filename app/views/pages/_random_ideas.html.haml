@@ -1,5 +1,5 @@
 .row
-  = render 'ideas_header', title: t('@@@Esimerkkejä ideoista')
+  = render 'ideas_header', title: t('@@@Esimerkkejä ideoista'), span: 'span8'
   - i = 0
   - @ideas.in_groups_of((@ideas.length % 2 == 0) ? @ideas.length / 2 : (@ideas.length / 2 + 1)).each do |ideas_column|
     .span4
