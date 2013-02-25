@@ -1,9 +1,9 @@
-<h2>Rekisteröidy</h2>
+<h2><%= t 'registration' %></h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "grid_16"}) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'span8'}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs grid_12">
+  <div class='inputs span6'>
     <%= f.label :email, :required => false %>
     <%= f.input :email, :required => true, :autofocus => true, :label => false %>
     <%= f.label :password, :required => false %>
@@ -20,19 +20,19 @@
     <% end %>
   </div>
 
-  <p class="grid_16">
-    Hyväksyn palvelun <a href="/artikkelit/4">käyttöehdot</a>.
+  <p class='span8'>
+    Hyväksyn palvelun <a href='/artikkelit/4'>käyttöehdot</a>.
   </p>
-  <div class="actions grid_16">
-    <%= f.button :submit, "Rekisteröidy" %>
+  <div class='actions span8'>
+    <%= f.button :submit, t('register') %>
   </div>
 <% end %>
-<div class="notification grid_8">
+<div class='notification grid_8'>
   <p>
     Rekisteröidy tästä Avoimen ministeriön nettipalvelun käyttäjäksi. Voit luoda uuden tunnuksen vahvistamalla sen sähköpostitse tai vahvistamalla sen Facebook-tunnuksillasi.
   </p>
   <p>
-    Palvelussa keskustellaan omalla nimellä ja asiallisesti. Palvelua ja sen toiminnallisuuksia kehitetään käyttäjäpalautteen perusteella. Voit lähettää risuja ja ruusuja osoitteeseen <a href="mailto:kanslia@avoinministerio.fi">kanslia@avoinministerio.fi</a>.
+    Palvelussa keskustellaan omalla nimellä ja asiallisesti. Palvelua ja sen toiminnallisuuksia kehitetään käyttäjäpalautteen perusteella. Voit lähettää risuja ja ruusuja osoitteeseen <a href='mailto:kanslia@avoinministerio.fi'>kanslia@avoinministerio.fi</a>.
   </p>
   <p>
     Tervetuloa!
