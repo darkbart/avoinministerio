@@ -1,5 +1,5 @@
 .row
-  = render 'ideas_header', title: t('@@@Esimerkkejä ideoista'), span: 'span8'
+  = render 'separator', title: t('@@@Esimerkkejä ideoista'), span: 'span8'
   - i = 0
   - @ideas.in_groups_of((@ideas.length % 2 == 0) ? @ideas.length / 2 : (@ideas.length / 2 + 1)).each do |ideas_column|
     .span4
@@ -15,4 +15,3 @@
             |
             %span.against #{against}
             %span.front-page-comment-count= link_to "#{comments}", idea_path(idea, anchor: 'comments')
-  =link_to 'Listaa kaikki»', ideas_path, class: 'list_ideas'

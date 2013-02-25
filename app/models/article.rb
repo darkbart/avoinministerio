@@ -5,6 +5,8 @@ class Article < ActiveRecord::Base
   include Tanker
   extend FriendlyId
 
+  attr_accessible :article_type, :title, :ingress, :body, :idea_id
+
   VALID_ARTICLE_TYPES = %w(blog footer statement)
 
   friendly_id :title, use: :slugged

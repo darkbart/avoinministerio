@@ -34,8 +34,6 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand{href: root_path}
-            = ::I18n.t "Open Ministry"
           .container.nav-collapse.pull-left
             %ul.nav
               %li= link_to t("ideas list"), ideas_path
@@ -44,6 +42,12 @@
             %ul.nav
               = render 'login_actions'
               = render partial: 'facebook_js'
+    .container.top_container
+      .row
+        .span6
+          = link_to image_tag("logo.png"), root_path, id: "logo"
+      .row
+        = render 'separator'
     %header.container
       = survey_button
     #content.container

@@ -5,11 +5,11 @@
          items: @proposals_and_drafts, items_counts: @proposal_and_drafts_counts, item_counter: 0 }
 - else # session[:ab_section_count] == 2
   .row
-    = render partial: 'ideas_header', locals: {title: t('@@@Toimenpide- ja Lakiehdotukse')}
+    = render partial: 'separator', locals: {title: t('@@@Toimenpide- ja Lakiehdotukse')}
   = render partial: 'ideas_row',
     locals: {items: @proposals, items_counts: @proposals_counts, item_counter: 0, section: "proposal", ideas_rows: 2 }
   .row
-    = render partial: 'ideas_header', locals: {title: t("@@@Luonnokset")}
+    = render partial: 'separator', locals: {title: t("@@@Luonnokset")}
   = render partial: 'ideas_row', 
     locals: {title: t("Luonnokset"), items: @drafts, items_counts: @draft_counts, item_counter: 3,  section: "draft", ideas_rows: 1 }
 .row.home_bottom
@@ -18,6 +18,10 @@
       = render partial: 'ideas'
     - else
       = render partial: 'random_ideas'
+    .row
+      .span8
+        .pull-right
+          = link_to "#{t('ideas list')}»", ideas_path, class: 'list_ideas'
   .span4
     = render partial: 'news'
     = render partial: 'newsletter'
