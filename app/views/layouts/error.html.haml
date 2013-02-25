@@ -13,14 +13,29 @@
   %link{ href: asset_path('favicon.ico'), rel: 'shortcut icon', type: 'image/x-icon' }
   = stylesheet_link_tag 'application.css', media: 'screen'
 
-%body
-  %header.container_24.top_row_container
-    .container_24.top_row
-  %header.container_24
-    = link_to image_tag("logo.png"), root_path, id: "logo", class: "grid_12"
-    = render partial: 'shared/login_actions'
+  %body
+    .navbar.navbar-inverse.navbar-fluid-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .container.nav-collapse.pull-left
+            %ul.nav
+              %li= link_to t('ideas list'), ideas_path
+              %li= link_to t('new idea'), new_idea_path
+          .container.nav-collapse.pull-right
+            %ul.nav
+              = render 'login_actions'
+              = render partial: 'facebook_js'
+    .container.top_container
+      .row
+        .span6
+          = link_to image_tag('logo.png'), root_path, id: 'logo'
 
-  .container.container_24
-    .idea.grid_24
-      .body
-        = yield
+  .container
+    .row
+      .idea.span12
+        .body
+          = yield

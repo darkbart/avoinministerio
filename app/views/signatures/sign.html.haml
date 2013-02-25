@@ -1,4 +1,4 @@
-.container_24
+.span12
   %h1 Kannatusilmoituksen sähköinen allekirjoitus
   .text
     Olet siirtymässä antamaan sähköisen allekirjoituksen ja tukesi ehdotukselle
@@ -41,7 +41,7 @@
   #signature_form
     %h1 Valitse tunnistuspalvelu
     - @services.each do |service|
-      .grid_16
+      .span8
         %form{:action => service[:url], :method => "post"}
           %input{:type => 'hidden', :name => 'A01Y_ACTION_ID',  :value => service[:action_id]}
           %input{:type => 'hidden', :name => 'A01Y_VERS',       :value => service[:vers]}

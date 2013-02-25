@@ -1,8 +1,8 @@
-.container_24
+.span12
   #signature_form
     - @services.each do |service|
-      .grid_16
-        %form{:action => service[:url], :method => "post"}
+      .row
+        %form{:action => service[:url], :method => "post", class: 'span8'}
           %input{:type => 'hidden', :name => 'A01Y_ACTION_ID',  :value => service[:action_id]}
           %input{:type => 'hidden', :name => 'A01Y_VERS',       :value => service[:vers]}
           %input{:type => 'hidden', :name => 'A01Y_RCVID',      :value => service[:rcvid]}
