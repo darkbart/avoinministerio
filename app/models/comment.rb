@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   include Concerns::Indexing
   include Tanker
 
-  attr_accessible :body
+  attr_accessible :body, :commentable
 
   belongs_to :author, class_name: "Citizen", foreign_key: "author_id"
   belongs_to :commentable, polymorphic: true
