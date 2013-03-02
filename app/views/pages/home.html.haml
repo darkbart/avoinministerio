@@ -17,7 +17,8 @@
     - if @newest_ideas
       = render partial: 'ideas'
     - else
-      = render partial: 'random_ideas'
+      - if @ideas.any?
+        = render partial: 'random_ideas'
     .row
       .span8
         .pull-right
