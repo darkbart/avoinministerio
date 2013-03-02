@@ -4,7 +4,9 @@ require 'digest/sha2'
 module ApplicationHelper
 
   def ie8?
-    request.env['HTTP_USER_AGENT'].include? "Mozilla/4.0 (compatible; MSIE 8.0;"
+    request.env.fetch('HTTP_USER_AGENT'){
+      ''
+    }.include? "Mozilla/4.0 (compatible; MSIE 8.0;"
   end
 
   def markdown(text)
