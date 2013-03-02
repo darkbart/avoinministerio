@@ -17,7 +17,7 @@
     - if @newest_ideas
       = render partial: 'ideas'
     - else
-      - unless @ideas_counts.empty?
+      - unless @idea_counts.empty?
         = render partial: 'random_ideas'
     .row
       .span8
