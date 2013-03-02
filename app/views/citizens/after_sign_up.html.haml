@@ -1,7 +1,12 @@
-%h2 Thank you
-%p
-  != t("survey_description")
-%p
-  = survey_button("signed_up")
-%p
-  = button_to t("routes.home"), root_url
+.row
+  .span12
+    %h2 Thank you
+.row
+  .span12
+    %p
+      != t('survey_description')
+.row
+  .span6
+    %p= survey_button('signed_up')
+  .span6
+    %p= button_to t('routes.home'), root_url, method: :get
