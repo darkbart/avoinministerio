@@ -20,6 +20,9 @@ describe Changelogger do
   before :all do
     silence_stream(STDOUT) {
       CreateChangeloggableItems.new.up
+      ChangeloggableItem.class_eval %{
+        attr_accessible :title
+      }
     }
   end
 
