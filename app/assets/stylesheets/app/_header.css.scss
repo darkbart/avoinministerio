@@ -14,5 +14,7 @@ input[type=submit], a.button {
 }
 .top_container {
   margin-top: 10px;
-  margin-bottom: 20px;
+  #logo > img {
+    margin-bottom: 10px;
+  }
 }
