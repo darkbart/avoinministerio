@@ -2,9 +2,11 @@ namespace :db do
   namespace :schema do
     # desc 'Dump additional database schema'
     task :dump => [:environment, :load_config] do
+      database_configs = ActiveRecord::Base.configurations
+      puts "loading schema #{Rails.env || 'NO RAILS_ENV SET!!!'}"
       filename = "#{Rails.root}/db/schema.rb"
       File.open(filename, 'w:utf-8') do |file|
-        ActiveRecord::Base.establish_connection("avoin_ministerio_#{Rails.env}")
+        ActiveRecord::Base.establish_connection(database_configs[Rails.env])
         ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
       end
     end
@@ -16,7 +18,8 @@ namespace :db do
       # like db:test:purge
       database_configs = ActiveRecord::Base.configurations
       # like db:test:load_schema
-      ActiveRecord::Base.establish_connection('testjs')
+      puts "loading schema #{Rails.env || 'NO RAILS_ENV SET!!!'}"
+      ActiveRecord::Base.establish_connection(database_configs['testjs'])
       ActiveRecord::Schema.verbose = false
       load("#{Rails.root}/db/schema.rb")
     end
