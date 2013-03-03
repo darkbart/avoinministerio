@@ -65,7 +65,7 @@ Spork.prefork do
 
   require "database_cleaner"
   require "controller_test_helper"
-  require "webmock/rspec" unless ENV["RAILS_ENV"] == 'testjs'
+  require "webmock/rspec"
   require "email_spec"
 
   # Capybara + Steak + Timecop for integration test
@@ -130,13 +130,19 @@ Spork.prefork do
     end
 
     config.before(:each) do
-
+      database_configs = ActiveRecord::Base.configurations
       if example.metadata[:js]
+        WebMock.allow_net_connect!
+        ActiveRecord::Base.establish_connection(database_configs['testjs']) unless ActiveRecord::Base.connection_config.values == database_configs['testjs'].values
         config.use_transactional_fixtures = false
         Capybara.current_driver = :selenium
         DatabaseCleaner.strategy = :truncation
         DatabaseCleaner.start
       else
+        ActiveRecord::Base.establish_connection(database_configs['test']) unless ActiveRecord::Base.connection_config.values == database_configs['test'].values
+        if in_memory_database?
+          load "#{Rails.root}/db/schema.rb"
+        end
         config.use_transactional_fixtures = true
         DatabaseCleaner.strategy = :transaction
         DatabaseCleaner.start
@@ -146,7 +152,10 @@ Spork.prefork do
     end
 
     config.after(:each) do
-      Capybara.use_default_driver if example.metadata[:js]
+      if example.metadata[:js]
+        Capybara.use_default_driver
+      end
+      WebMock.disable_net_connect!(:allow_localhost => true)
       DatabaseCleaner.clean
       Warden.test_reset!
     end
