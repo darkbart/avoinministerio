@@ -16,3 +16,13 @@ production:
   encoding: unicode
   database: avoin_ministerio_production
   pool: 5
+
+# JS tests running on separate environment
+# it needs extra db connection setting
+# it must be named 'testjs' (just like additional file in #{Rails.root}/config/environents/)
+# and on development machine it should be static sqlite3 database for example:
+
+testjs:
+  adapter: sqlite3
+  database: db/avoin_ministerio_testjs.sqlite3
+  timeout: 500
