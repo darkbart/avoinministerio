@@ -570,16 +570,16 @@ feature "Idea signing" do
         # this time we send direct POST requests in order to bypass as many
         # security checks as possible
         page.driver.post(signature_idea_path(idea.id),
-                         {:accept_general => 1,
-                          :accept_non_eu_server => 1,
+                         {:accept_general => '1',
+                          :accept_non_eu_server => '1',
                           :publicity => "Normal"
                          })
         @first_signature = Signature.where(:idea_id => idea.id,
                                           :citizen_id => @citizen.id).last
         # reload the page, which creates another signature
         page.driver.post(signature_idea_path(idea.id),
-                         {:accept_general => 1,
-                          :accept_non_eu_server => 1,
+                         {:accept_general => '1',
+                          :accept_non_eu_server => '1',
                           :publicity => "Normal"
                          })
         @second_signature = Signature.where(:idea_id => idea.id,

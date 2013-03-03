@@ -24,8 +24,8 @@ describe SignaturesController do
     it "assigns the newly created Signature as @signature" do
       post :sign,
            :id => idea.id,
-           :accept_general => true,
-           :accept_non_eu_server => true,
+           :accept_general => '1',
+           :accept_non_eu_server => '1',
            :publicity => "Normal"
       assigns(:signature).should_not be nil
     end
@@ -33,8 +33,8 @@ describe SignaturesController do
     it "assigns available authentication services (tupas services) as @tupas_services" do
       post :sign,
            :id => idea.id,
-           :accept_general => true,
-           :accept_non_eu_server => true,
+           :accept_general => '1',
+           :accept_non_eu_server => '1',
            :publicity => "Normal"
       assigns(:tupas_services).length.should be 7
     end

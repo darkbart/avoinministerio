@@ -44,10 +44,10 @@ class SignaturesController < ApplicationController
   end
 
   def fill_in_acceptances(signature)
-    signature.accept_general       = params[:accept_general]        || session["authenticated_accept_general"]
-    signature.accept_non_eu_server = params[:accept_non_eu_server]  || session["authenticated_accept_non_eu_server"]
-    signature.accept_publicity     = params[:publicity]             || session["authenticated_accept_publicity"]
-    signature.accept_science       = params[:accept_science]        || session["authenticated_accept_science"]
+    signature.accept_general       = params[:accept_general]  == '1'       || session["authenticated_accept_general"] == '1'
+    signature.accept_non_eu_server = params[:accept_non_eu_server] == '1'  || session["authenticated_accept_non_eu_server"] == '1'
+    signature.accept_publicity     = params[:publicity]                    || session["authenticated_accept_publicity"]
+    signature.accept_science       = params[:accept_science]               || session["authenticated_accept_science"]
     signature.accept_science = false if signature.accept_science == ''
   end
 
