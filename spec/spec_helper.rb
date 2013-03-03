@@ -132,9 +132,12 @@ Spork.prefork do
     config.before(:each) do
 
       if example.metadata[:js]
+        config.use_transactional_fixtures = false
         Capybara.current_driver = :selenium
         DatabaseCleaner.strategy = :truncation
+        DatabaseCleaner.start
       else
+        config.use_transactional_fixtures = true
         DatabaseCleaner.strategy = :transaction
         DatabaseCleaner.start
         WebMock.stub_request(:any, /4na.api.searchify.com/)
