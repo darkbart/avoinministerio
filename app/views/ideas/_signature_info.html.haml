@@ -19,11 +19,11 @@
           - elsif shortcut_session_valid?
             = link_to "Jätä kannatusilmoitus ilman uutta tunnistautumista", signature_idea_service_selection_path(idea.id), class: "btn jaa-btn"
           - else
-            = link_to "Jätä kannatusilmoitus", signature_idea_introduction_path(idea.id), class: "btn jaa-btn"
+            = link_to "Allekirjoita kannatusilmoitus", signature_idea_introduction_path(idea.id), class: "btn jaa-btn"
         - else
           Olet jo jättänyt kannatusilmoituksen onnistuneesti. Et voi jättää sitä uudelleen.
       - else
-        = link_to "Sisäänkirjaudu jättääksesi kannatusilmoituksen", signature_idea_introduction_path(idea.id), class: "btn jaa-btn-disabled", disabled: true
+        = link_to "Sisäänkirjaudu allekirjoittaaksesi kannatusilmoituksen", signature_idea_introduction_path(idea.id), class: "btn jaa-btn-disabled", disabled: true
 
   - if ended
     Tämän aloitteen kannatusilmoitusten keräysaika on jo päättynyt, mutta käyttäjien tukea silti siltä varalta että aloite aktivoidaan uudelleen. Siinä tapauksessa lähetämme sinulle sähköpostin että voit jättää sen uudelleen.
