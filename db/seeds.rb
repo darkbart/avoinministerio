@@ -8,31 +8,31 @@ Administrator.find_or_create_by_email({
 [
   { email: "joonas@pekkanen.com",
     password: "joonas1", password_confirmation: "joonas1", remember_me: true,
-    profile_attributes: {first_names: "Joonas", first_name: "Joonas", last_name: "Pekkanen", name: "Joonas Pekkanen"}, },
+    profile_attributes: {first_names: "Joonas", first_name: "Joonas", last_name: "Pekkanen"}, },
 
   { email: "arttu.tervo@gmail.com",
     password: "arttu1", password_confirmation: "arttu1", remember_me: true,
-    profile_attributes: {first_names: "Arttu", first_name: "Arttu", last_name: "Tervo", name: "Arttu Tervo"}, },
+    profile_attributes: {first_names: "Arttu", first_name: "Arttu", last_name: "Tervo"}, },
 
   { email: "aleksi.rossi@iki.fi",
     password: "aleksi1", password_confirmation: "aleksi1", remember_me: true,
-    profile_attributes: {first_names: "Aleksi", first_name: "Aleksi", last_name: "Rossi", name: "Aleksi Rossi"}, },
+    profile_attributes: {first_names: "Aleksi", first_name: "Aleksi", last_name: "Rossi"}, },
 
   { email: "hleinone@gmail.com",
     password: "hannu1", password_confirmation: "hannu1", remember_me: true,
-    profile_attributes: {first_names: "Hannu", first_name: "Hannu", last_name: "Leinonen", name: "Hannu Leinonen"}, },
+    profile_attributes: {first_names: "Hannu", first_name: "Hannu", last_name: "Leinonen"}, },
 
   { email: "juha.yrjola@iki.fi",
     password: "juhay1", password_confirmation: "juhay1", remember_me: true,
-    profile_attributes: {first_names: "Juha", first_name: "Juha", last_name: "Yrjölä", name: "Juha Yrjölä"}, },
+    profile_attributes: {first_names: "Juha", first_name: "Juha", last_name: "Yrjölä"}, },
 
   { email: "lauri@kiskolabs.com",
     password: "lauri1", password_confirmation: "lauri1", remember_me: true,
-    profile_attributes: {first_names: "Lauri", first_name: "Lauri", last_name: "Jutila", name: "Lauri Jutila"}, },
+    profile_attributes: {first_names: "Lauri", first_name: "Lauri", last_name: "Jutila"}, },
 
   { email: "mikael.kopteff@gmail.com",
     password: "mikael1", password_confirmation: "mikael1", remember_me: true,
-    profile_attributes: {first_names: "Mikael", first_name: "Mikael", last_name: "Kopteff", name: "Mikael Kopteff"}, },
+    profile_attributes: {first_names: "Mikael", first_name: "Mikael", last_name: "Kopteff"}, },
 ].each { |citizen| Citizen.find_or_create_by_email(citizen) }
 @citizens = Citizen.all
 def random_citizen
@@ -229,7 +229,7 @@ EOS
       body: "Yleensä esimerkit ovat ytimekkäitä. Joskus ne venyvät syyttä. Tällä kertaa ei käy niin. Oleellista on uniikki sisältö. Tämä idea #{i} on uniikki. Tätä ei ole tässä muodossa missään muualla.",  
       created_at: Time.now - (60*60*24),
       updated_at: Time.now - (60*60*24),
-      })
+      }, without_protection: true)
   idea.state = "idea"
   idea.author = random_citizen
   idea.save!
@@ -238,7 +238,7 @@ voters = (0..100).map do |i|
   Citizen.find_or_create_by_email(
       email: "voter#{i}@voter.com",
       password: "voter#{i}", password_confirmation: "voter#{i}", remember_me: true,
-      profile_attributes: {first_names: "Clueless Voter", first_name: "Voter", last_name: "#{i}", name: "Voter #{i}"}
+      profile_attributes: {first_names: "Clueless Voter", first_name: "Voter", last_name: "#{i}"}
     )
 end
 Idea.all.each do |idea|
@@ -286,6 +286,7 @@ ideas.each do |idea|
     idea.vote(v, rand(2))
   end
 end
+a = ''
 # let's create some articles
 def read_till(f, breaker = /^---+/)
   str = ""
@@ -297,6 +298,7 @@ end
 def field(f, name)
   str = f.gets
   if m = str.match(/^#{name}:/)
+    puts m.post_match
     return m.post_match
   else
     raise "line #{str} does not match field name #{name}"
@@ -306,15 +308,15 @@ Dir["articles/*.md"].sort{|a,b| a <=> b}.each do |name|
   next unless File.file?(name)
   File.open(name) do |f|
     article = {
-      article_type: field(f, "article_type"),
+      article_type: (field(f, "article_type").strip),
       created_at:   field(f, "created_at"),
       updated_at:   field(f, "updated_at"),
-      author:       Citizen.find(field(f, "author")),
-      idea:         (iid = field(f, "idea").chomp; iid == "" ? nil : Idea.find(iid)),
+      author:       Citizen.find(field(f, "author").chomp),
+      idea:         -> { my_id = field(f, "idea").chomp; if my_id == "" then nil else Idea.find(my_id) end;}.call,
       title:        field(f, "title"),
       ingress:      field(f, "ingress") && read_till(f),
       body:         field(f, "body") && read_till(f),
     }
-    Article.find_or_create_by_created_at(article)
+    a = Article.find_or_create_by_title(article)
   end
 end
