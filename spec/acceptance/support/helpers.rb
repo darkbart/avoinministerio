@@ -168,7 +168,10 @@ module HelperMethods
     check "accept_general"
     check "accept_non_eu_server"
     choose "publicity_Normal"
+    ENV['SIGNING_API_VERSION'] = '2.0'
+    ENV['DISABLE_PAYMENT_SERVICES'] = ''
     click_button "Hyväksy ehdot ja siirry tunnistautumaan"
+    should_be_on signature_idea_service_selection_path(id)
   end
   
   def visit_signature_returning(idea_id, citizen_id)
@@ -177,6 +180,16 @@ module HelperMethods
     # therefore it can't be passed as a parameter
     signature = Signature.where(:idea_id => idea_id, :citizen_id => citizen_id).last
     visit(capybara_test_return_url(signature.id))
+  end
+
+  def have_field_with_date(field_name, my_date)
+    find(:id, "#{field_name}_3i").value.should eq my_date.day.to_s
+    find(:id, "#{field_name}_2i").value.should eq my_date.month.to_s
+    find(:id, "#{field_name}_1i").value.should eq my_date.year.to_s
+  end
+
+  def have_field_with_text(field_name, text)
+    find(:id, field_name).value.should eq text
   end
   
   def visit_signature_finalize_signing(idea_id, citizen_id)
