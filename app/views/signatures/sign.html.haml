@@ -40,7 +40,7 @@
 
   #signature_form
     %h1 Valitse tunnistuspalvelu
-    - @services.each do |service|
+    - @tupas_services.each do |service|
       .span8
         %form{:action => service[:url], :method => "post"}
           %input{:type => 'hidden', :name => 'A01Y_ACTION_ID',  :value => service[:action_id]}

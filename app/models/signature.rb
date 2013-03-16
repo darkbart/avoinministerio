@@ -16,6 +16,8 @@ class Signature < ActiveRecord::Base
   validates :accept_science, acceptance: {accept: true, allow_nil: true}
   validates :accept_publicity, inclusion: VALID_PUBLICITY_OPTIONS
 
+  include SignaturesParser
+
   def self.create_with_citizen_and_idea(citizen, idea)
     completed_signature = where(state: "signed", citizen_id: citizen.id, idea_id: idea.id).first
     if !completed_signature || ENV["ALLOW_SIGNING_MULTIPLE_TIMES"]
