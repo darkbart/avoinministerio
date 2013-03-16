@@ -60,16 +60,16 @@ end
 
 group :test do
   gem "spork-rails"
-  gem "capybara"
+  gem "capybara", ">= 2.0.2"
   gem "database_cleaner"
   gem "rspec-rails-controller"
   gem "shoulda-matchers"
   gem "simplecov", :require => false
   gem "turn", "~> 0.8.3", :require => false
-  gem "webmock", :require => false
+  gem "webmock", "~> 1.11.0", :require => false
   gem "email_spec"
   gem "steak"
-  gem "capybara-mechanize"
+  gem "capybara-mechanize", ">= 0.4.0.rc1"
   gem "timecop"
 
   gem "sqlite3"
