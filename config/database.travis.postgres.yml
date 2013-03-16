@@ -4,4 +4,3 @@ test: &test_ppgsql
   database: avoin_ministerio_test
   username: postgres
   pool: 5
-testjs: *test_pqsql
