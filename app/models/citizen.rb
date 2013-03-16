@@ -31,7 +31,7 @@ class Citizen < ActiveRecord::Base
     :image
   ].each { |attribute| delegate attribute, to: :profile }
 
-  if Rails.env == 'testjs'
+  if Rails.env == 'test'
     include Concerns::IndexingWrapperTest
   else
     include TankerMethods

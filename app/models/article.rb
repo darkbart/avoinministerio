@@ -5,7 +5,7 @@ class Article < ActiveRecord::Base
   include Tanker
   extend FriendlyId
 
-  attr_accessible :article_type, :title, :ingress, :body, :idea_id
+  attr_accessible :article_type, :title, :ingress, :body, :author, :citizen_id, :idea_id, :idea, :created_at, :updated_at
 
   VALID_ARTICLE_TYPES = %w(blog footer statement)
 
@@ -17,7 +17,7 @@ class Article < ActiveRecord::Base
   validates :article_type, inclusion: { in: VALID_ARTICLE_TYPES }
   validates :title, length: { minimum: 5 }
 
-  if Rails.env == 'testjs'
+  if Rails.env == 'test'
     include Concerns::IndexingWrapperTest
   else
     include TankerMethods

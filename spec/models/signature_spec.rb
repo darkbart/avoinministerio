@@ -15,6 +15,14 @@ describe Signature do
     it { should be_accessible(:started) }
 
     describe "Validations" do
+
+      it "should be valid with accepted general and non eu server rules" do
+        c = FactoryGirl.create :citizen
+        i = FactoryGirl.create :idea
+        s = Signature.new citizen_id: c.id, idea_id: i.id, accept_publicity: 'Normal', accept_non_eu_server: true, accept_general: true
+        s.save!
+      end
+
     end
   end
 

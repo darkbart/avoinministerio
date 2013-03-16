@@ -17,7 +17,7 @@ class Comment < ActiveRecord::Base
   validates :commentable_id,    presence: true
   validates :commentable_type,  presence: true
 
-  if Rails.env == 'testjs'
+  if Rails.env == 'test'
     include Concerns::IndexingWrapperTest
   else
     include TankerMethods
