@@ -59,7 +59,7 @@ feature "Idea signing" do
                   target_count: 51500
   }
   let(:signature) {
-    FactoryGirl.create :signature, idea: idea
+    FactoryGirl.create :signature, idea: idea, accept_general: true, accept_non_eu_server: true, accept_science: true
   }
 
   context "Sign button on Idea page visible" do
@@ -129,7 +129,7 @@ feature "Idea signing" do
                   collecting_start_date: today_date, collecting_end_date: today_date + 180, 
                   additional_signatures_count: 0, additional_signatures_count_date: today_date, 
                   target_count: 10
-      signature_for_idea_about_to_pass = FactoryGirl.create :signature, idea: idea_about_to_pass
+      signature_for_idea_about_to_pass = FactoryGirl.create :signature, idea: idea_about_to_pass, accept_general: true, accept_non_eu_server: true, accept_science: true
       
       visit idea_page(idea_about_to_pass.id)
       page.should have_content("Tällä tahdilla ehditään kerätä ilmoitukset ennen päättymispäivää")
@@ -141,7 +141,7 @@ feature "Idea signing" do
                   collecting_start_date: today_date, collecting_end_date: today_date + 180, 
                   additional_signatures_count: 0, additional_signatures_count_date: today_date, 
                   target_count: 1
-      signature_for_passed_idea = FactoryGirl.create :signature, idea: passed_idea
+      signature_for_passed_idea = FactoryGirl.create :signature, idea: passed_idea, accept_general: true, accept_non_eu_server: true, accept_science: true
       
       visit idea_page(passed_idea.id)
       page.should have_content("Tavoite on täyttynyt")
