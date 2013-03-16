@@ -94,7 +94,6 @@ Spork.prefork do
       DatabaseCleaner.clean_with(:truncation)
     end
 
-
     require 'action_dispatch'
     require 'capybara/rails'
     require 'capybara/rspec'
@@ -111,17 +110,6 @@ Spork.prefork do
       end
     end
 
-    module AcceptancejsExampleGroup
-      extend ActiveSupport::Concern
-
-      include RSpec::Rails::RequestExampleGroup
-      include Rack::Test::Methods
-
-      included do
-        metadata[:type] = :acceptancejs
-      end
-    end
-
     config.use_transactional_fixtures = false
 
     config.before(:suite) do
@@ -133,17 +121,10 @@ Spork.prefork do
       database_configs = ActiveRecord::Base.configurations
       if example.metadata[:js]
         WebMock.allow_net_connect!
-        ActiveRecord::Base.establish_connection(database_configs['testjs']) unless ActiveRecord::Base.connection_config.values == database_configs['testjs'].values
-        config.use_transactional_fixtures = false
         Capybara.current_driver = :selenium
         DatabaseCleaner.strategy = :truncation
         DatabaseCleaner.start
       else
-        ActiveRecord::Base.establish_connection(database_configs['test']) unless ActiveRecord::Base.connection_config.values == database_configs['test'].values
-        if in_memory_database?
-          load "#{Rails.root}/db/schema.rb"
-        end
-        config.use_transactional_fixtures = true
         DatabaseCleaner.strategy = :transaction
         DatabaseCleaner.start
         WebMock.stub_request(:any, /4na.api.searchify.com/)
