@@ -23,11 +23,12 @@ describe SignaturesController do
 
     it "assigns the newly created Signature as @signature" do
       post :sign,
-           :id => idea.id,
-           :accept_general => '1',
-           :accept_non_eu_server => '1',
-           :publicity => "Normal"
-      assigns(:signature).should_not be nil
+           "id" => idea.id,
+           "accept_general" => "1",
+           "accept_non_eu_server" => "1",
+           "publicity" => "Normal"
+      assigns(:signature).accept_general.should == true # this fail on sqlite3 in memor database
+      assigns(:signature).accept_non_eu_server.should == true # this fail on sqlite3 in meemory database
     end
 
     it "assigns available authentication services (tupas services) as @tupas_services" do
