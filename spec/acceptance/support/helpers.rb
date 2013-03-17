@@ -160,6 +160,7 @@ module HelperMethods
   # it's strongly not recommended
   def visit_signature_idea_approval_path(id)
     visit signature_idea_introduction(id)
+    page.has_button? "Siirry hyväksymään ehdot"
     click_button "Siirry hyväksymään ehdot"
   end
   
@@ -170,6 +171,7 @@ module HelperMethods
     choose "publicity_Normal"
     ENV['SIGNING_API_VERSION'] = '2.0'
     ENV['DISABLE_PAYMENT_SERVICES'] = ''
+    page.has_button? "Hyväksy ehdot ja siirry tunnistautumaan"
     click_button "Hyväksy ehdot ja siirry tunnistautumaan"
     should_be_on signature_idea_service_selection_path(id)
   end
