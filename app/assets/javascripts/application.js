@@ -10,4 +10,7 @@
 //= require raphael-min
 //= require g.raphael-min
 //= require g.pie-min
-//=# require_directory .
+//= require bootstrap
+//= require surveyor_all
+//= require vote-flow/impact-code
+//= require_self
