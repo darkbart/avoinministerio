@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "3.2.12"
+gem "rails", "3.2.13"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -60,7 +60,8 @@ end
 
 group :test do
   gem "spork-rails"
-  gem "capybara", ">= 2.0.2"
+  gem "selenium-webdriver", "~> 2.31.0"
+  gem "capybara", ">= 2.1.0.beta1"
   gem "database_cleaner"
   gem "rspec-rails-controller"
   gem "shoulda-matchers"
