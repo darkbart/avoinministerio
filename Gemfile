@@ -10,7 +10,7 @@ group :assets do
   gem "sass-rails",   "= 3.2.5"
   gem "uglifier",     ">= 1.3.0"
 end
-
+gem "pg"
 gem "devise", '2.1.2'
 gem "factory_girl_rails", "4.1.0", :require => false
 gem "friendly_id"
@@ -35,7 +35,7 @@ gem "unicorn"
 gem "surveyor", "~> 1.1.0"
 
 gem 'libv8'
-gem 'therubyracer', platform: :ruby
+gem 'therubyracer', '>= 0.11.4',  platform: :ruby
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
@@ -43,7 +43,6 @@ gem "rspec-rails", :groups => [ :development, :test ]
 
 group :development do
   gem "rails-erd"
-  gem "sqlite3"
   gem "unicorn"
   gem "guard", "1.0.3"
   gem "guard-rspec", "0.7.3"
@@ -55,7 +54,6 @@ end
 
 group :production do
   gem "newrelic_rpm", "~> 3.5.7.59"
-  gem "pg"
 end
 
 group :test do
@@ -72,12 +70,6 @@ group :test do
   gem "steak"
   gem "capybara-mechanize", ">= 0.4.0.rc1"
   gem "timecop"
-
-  gem "sqlite3"
-
-  if ENV["DB"] == "postgres"
-    gem "pg"
-  end
 end
 
 group :mac_test do
@@ -85,6 +77,5 @@ group :mac_test do
 end
 
 group :linux_test do
-  gem "therubyracer", :require => false
   gem "libnotify", :require => false
 end
